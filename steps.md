@@ -120,3 +120,8 @@ now lets push our code to github
 
 git add .
 git commit -m "Prima Setup Done"
+git push
+
+git add .
+git commit -m "Code Refactor"
+git push
