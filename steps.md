@@ -31,7 +31,10 @@ git init
 
 git add .
 git commit -m "Graphql Server Setup"
+git branch -m main    
 git push -u origin main
+
+
 
 
 https://github.com/new
