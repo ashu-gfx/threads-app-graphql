@@ -49,7 +49,74 @@ https://docs.docker.com/compose/
 
 https://docs.docker.com/compose/gettingstarted/
 
-docker compose up
+docker compose up -d
 
 git add .
 git commit -m "setup dev containers"
+git push
+
+
+next video
+
+yarn add  prisma typescript tsx @types/node -D
+
+npx prisma init
+
+copy user name from docker compose and add that to .env  postgres url 
+
+docker ps
+docker exec -it threadsappbackend bash
+docker exec -it db96c34be15b bash
+su postgres
+
+if any error use these two codes
+psql -U postgres
+psql -U postgres -d threads
+
+
+psql
+
+
+psql -d postgres
+
+terminal type postgres will run \l command
+- postgres-# \l
+
+
+\l
+\c threads
+
+terminal threads needed to run next code
+threads-#
+
+
+\d
+
+npx prisma migrate dev --name create_users_table
+
+\d
+\d users
+
+yarn dev
+
+
+now in our local host 8000/graphql go to 
+root -> mutation -> createUser
+
+
+threads=# select * from users;
+select * from users;
+
+after mutation2 image process
+
+retry select * from users;
+
+for exiting use q
+
+\x
+select * from users;
+
+now lets push our code to github
+
+git add .
+git commit -m "Prima Setup Done"

@@ -17,6 +17,7 @@ const server_1 = require("@apollo/server");
 const express5_1 = require("@as-integrations/express5");
 const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const db_1 = require("./lib/db");
 function startServer() {
     return __awaiter(this, void 0, void 0, function* () {
         const app = (0, express_1.default)();
@@ -31,11 +32,31 @@ function startServer() {
         hello: String
         say(name: String): String
       }
+
+     type Mutation{
+     createUser(firstName: String!, lastName: String!, email: String!, password: String!): Boolean
+     }
     `,
             resolvers: {
                 Query: {
-                    hello: () => "Hey there I am a GraphQL server",
-                    say: (_, { name }) => { return `Hey ${name}, how are you?`; }
+                    hello: () => 'Hey there I am a GraphQL server',
+                    say: (_, { name }) => {
+                        return `Hey ${name}, how are you?`;
+                    }
+                },
+                Mutation: {
+                    createUser: (_1, _a) => __awaiter(this, [_1, _a], void 0, function* (_, { firstName, lastName, email, password }) {
+                        yield db_1.prismaClient.user.create({
+                            data: {
+                                email,
+                                firstName,
+                                lastName,
+                                password,
+                                salt: "random_salt"
+                            }
+                        });
+                        return true;
+                    })
                 }
             }
         });
