@@ -45,3 +45,11 @@ git remote add origin https://github.com/ashu-gfx/threads-app-graphql.git
 
 
 
+https://docs.docker.com/compose/
+
+https://docs.docker.com/compose/gettingstarted/
+
+docker compose up
+
+git add .
+git commit -m "setup dev containers"
