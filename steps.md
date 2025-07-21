@@ -29,4 +29,16 @@ now we will setup postgress database
 npx gitignore Node
 git init
 
+git add .
+git commit -m "Graphql Server Setup"
+git push -u origin main
+
+
+https://github.com/new
+
+now name that threads-app-graphql
+
+git remote add origin https://github.com/ashu-gfx/threads-app-graphql.git
+
+
 
