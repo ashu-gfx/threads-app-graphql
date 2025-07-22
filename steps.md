@@ -157,3 +157,7 @@ yarn add
 git add .
 git commit -m "Added User signup and signin"
 git push
+
+git add .
+git commit -m "Added Auth Context"
+git push

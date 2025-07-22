@@ -15,10 +15,11 @@ function createApolloGraphqlServer() {
     return __awaiter(this, void 0, void 0, function* () {
         // Apollo Server with a basic schema
         const server = new server_1.ApolloServer({
-            typeDefs: `
+            typeDefs: `#graphql
             ${user_1.User.typeDefs}
             type Query {
                ${user_1.User.queries}
+               getContext: String
             }
 
             type Mutation {
@@ -26,9 +27,12 @@ function createApolloGraphqlServer() {
             }
         `,
             resolvers: {
-                Query: Object.assign({}, user_1.User.resolvers.queries),
-                Mutation: Object.assign({}, user_1.User.resolvers.mutations),
-            },
+                Query: Object.assign(Object.assign({}, user_1.User.resolvers.queries), { getContext: (_, __, context) => {
+                        console.log('context', context);
+                        return 'okay';
+                    } }),
+                Mutation: Object.assign({}, user_1.User.resolvers.mutations)
+            }
         });
         yield server.start();
         return server;

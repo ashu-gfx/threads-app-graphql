@@ -17,6 +17,7 @@ const express5_1 = require("@as-integrations/express5");
 const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const graphql_1 = __importDefault(require("./graphql"));
+const user_1 = __importDefault(require("./services/user"));
 function startServer() {
     return __awaiter(this, void 0, void 0, function* () {
         const app = (0, express_1.default)();
@@ -28,7 +29,23 @@ function startServer() {
             res.json({ message: 'Server is up and running' });
         });
         // Mount GraphQL middleware
-        app.use('/graphql', (0, express5_1.expressMiddleware)(yield (0, graphql_1.default)()));
+        app.use('/graphql', (0, express5_1.expressMiddleware)(yield (0, graphql_1.default)(), {
+            context: (_a) => __awaiter(this, [_a], void 0, function* ({ req }) {
+                // @ts-ignore
+                const token = req.headers['token'];
+                console.log(req.headers);
+                // return {
+                //   myName: 'Ashu'
+                // }
+                try {
+                    const user = user_1.default.decodeJWTToken(token);
+                    return { user };
+                }
+                catch (error) {
+                    return {};
+                }
+            })
+        }));
         app.listen(PORT, () => {
             console.log(`🚀 Server ready at http://localhost:${PORT}/graphql`);
         });
