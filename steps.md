@@ -125,3 +125,35 @@ git push
 git add .
 git commit -m "Code Refactor"
 git push
+
+
+if we do any changes in prisma we have to run this command
+
+npx prisma migrate dev --name make_last_name_optional 
+
+now we will delete our old database inside threads and replace with new one
+
+threads=# \x
+threads=# select * from users      
+threads-# \d
+
+delete from users where 1=1;
+
+next step image3
+
+next 
+threads=# select * from users; 
+
+lets delete the error occuring user from records
+
+delete from users where email = '@mail';
+
+yarn add 
+jsonwebtoken
+
+yarn add 
+@types/jsonwebtoken
+
+git add .
+git commit -m "Added User signup and signin"
+git push
